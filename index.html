@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="src">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <title>Sistem Penilaian Kredit</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lilita+One&display=swap');
+
+        :root {
+            --primary-color: #0071e3;
+            --secondary-color: #86868b;
+            --card-background: rgba(255, 255, 255, 0.9);
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: #1d1d1f;
+            line-height: 1.5;
+            margin: 0;
+            padding: 0;
+            background: url('Thumbnail.png') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+
+        h1 {
+            font-size: 48px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 40px;
+            background-color: white;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .card {
+            background-color: var(--card-background);
+            border-radius: 18px;
+            padding: 40px;
+            box-shadow: 0 8px 60px rgba(173, 216, 230, 0.8);
+            background-color: rgba(255, 255, 255, 0.7);
+            font-weight: bold;
+
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #d2d2d7;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="text"]:focus,
+        input[type="number"]:focus,
+        select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+
+            box-shadow: 0 0 10px rgba(173, 216, 230, 0.8);
+        }
+
+        button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 16px 32px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #0051a5;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 0 16px;
+            }
+
+            .card {
+                padding: 24px;
+            }
+
+            h1 {
+                font-size: 36px;
+            }
+        }
+    </style>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lilita+One&display=swap');
+
+        .lilita-one-regular {
+            font-family: "Lilita One", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="lilita-one-regular font-bold">Sistem Penentuan Pemberian Kredit</h1>
+        <div class="card shadow-md">
+
+
+            <form id="creditForm" action="process.php" method="POST">
+                <div class="form-group">
+                    <label style="font-weight: bold;" for="name">Nama</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="age">Usia</label>
+                    <input type="number" id="age" name="age" required min="18">
+                </div>
+                <div class="form-group">
+                    <label for="maritalStatus">Status Pernikahan</label>
+                    <select id="maritalStatus" name="maritalStatus" required>
+                        <option value="Belum Menikah">Belum Menikah</option>
+                        <option value="Menikah">Menikah</option>
+                        <option value="Janda/Duda">Janda/Duda</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="dependents">Jumlah Tanggungan</label>
+                    <input type="number" id="dependents" name="dependents" required min="0">
+                </div>
+                <div class="form-group">
+                    <label for="occupation">Pekerjaan</label>
+                    <select id="occupation" name="occupation" required>
+                        <option value="Tidak Bekerja">Tidak Bekerja</option>
+                        <option value="PNS">PNS</option>
+                        <option value="Jaksa">Jaksa</option>
+                        <option value="Karyawan Kontrak">Karyawan Kontrak</option>
+                        <option value="Karyawan Tetap">Karyawan Tetap</option>
+                        <option value="Karyawan Harian">Karyawan Harian</option>
+                        <option value="Wiraswasta Kecil">Wiraswasta Kecil</option>
+                        <option value="Wiraswasta Menengah">Wiraswasta Menengah</option>
+                        <option value="Wiraswasta Besar">Wiraswasta Besar</option>
+                        <option value="Dosen">Dosen</option>
+                        <option value="Dokter">Dokter</option>
+                        <option value="Bidan">Bidan</option>
+                        <option value="Guru honor">Guru Honor</option>
+                        <option value="Pengacara">Pengacara</option>
+                        <option value="Guru Sertifikasi">Guru Sertifikasi</option>
+                        <option value="Petani">Petani</option>
+                        <option value="Asisten rumah tangga">Asisten Rumah Tangga</option>
+                        <option value="Ibu rumah tangga">Ibu Rumah Tangga</option>
+                        <option value="Pensiun">Pensiun</option>
+                        <option value="Pelajar/Mahasiswa">Pelajar/Mahasiswa</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="collateral">Jaminan</label>
+                    <select id="collateral" name="collateral" required>
+                        <option value="Tidak ada">Tidak ada</option>
+                        <option value="Rumah">Rumah</option>
+                        <option value="Mobil">Mobil</option>
+                        <option value="Sepeda motor">Sepeda motor</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="income">Penghasilan per Bulan (Rp)</label>
+                    <input type="text" id="income" name="income" required>
+                </div>
+                <div class="form-group">
+                    <label for="loanAmount">Jumlah Pinjaman (Rp)</label>
+                    <select id="loanAmount" name="loanAmount" required>
+                        <option value="5000000">5.000.000</option>
+                        <option value="10000000">10.000.000</option>
+                        <option value="15000000">15.000.000</option>
+                        <option value="20000000">20.000.000</option>
+                        <option value="25000000">25.000.000</option>
+                        <option value="30000000">30.000.000</option>
+                        <option value="35000000">35.000.000</option>
+                        <option value="40000000">40.000.000</option>
+                        <option value="45000000">45.000.000</option>
+                        <option value="50000000">50.000.000</option>
+                    </select>
+                </div>
+
+                <button type="submit">Hitung Skor Kredit</button>
+
+
+            </form>
+        </div>
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#income').mask('000.000.000', { reverse: true });
+
+            $('#creditForm').on('submit', function (e) {
+                e.preventDefault();
+                var formData = $(this).serialize();
+                window.location.href = 'result.php?' + formData;
+            });
+        });
+    </script>
+</body>
+
+</html>
